@@ -5,7 +5,6 @@ import Image from "next/image"
 
 const Home = async ({ params: { id } }) => {
     const anime = await getAnimeResponse(`anime/${id}`)
-    console.log(anime)
 
     return (
         <div className="pt-4 px-4 flex sm:flex-row gap-5 justify-center flex-col">
@@ -32,7 +31,7 @@ const Home = async ({ params: { id } }) => {
                 </div>
                 <h2 className="text-2xl font-semibold text-slate-700">Sinopsis:</h2>
                 <p className="text-slate-600">{anime.data.synopsis}</p>
-                <div className="w-full flex sm:items-start items-center justify-center flex-col sm:items-center sm:justify-around sm:flex-row mt-3">
+                <div className="w-full flex items-center justify-center flex-col sm:items-center sm:justify-around sm:flex-row mt-3">
                     <table className="table-fixed sm:w-1/3 w-full">
                         <thead>
                             <tr className="font-semibold">
