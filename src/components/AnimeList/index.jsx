@@ -4,7 +4,7 @@ import Link from "next/link"
 
 const AnimeList = ({ api }) => {
     return (
-        <div className="flex flex-wrap gap-3 justify-center">
+        <div className="flex flex-wrap gap-3 justify-center mb-3">
             {
                 api.data?.map((anime, index) => {
                     return (
