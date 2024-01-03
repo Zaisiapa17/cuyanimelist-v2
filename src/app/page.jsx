@@ -8,8 +8,6 @@ export default async function Home() {
 
     let recommendedAnime = await getNestedAnimeResponse("recommendations/anime", "entry")
     recommendedAnime = reproduce(recommendedAnime, 8)
-    console.log(recommendedAnime)
-
     
     return (
         <>

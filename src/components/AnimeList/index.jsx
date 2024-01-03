@@ -16,7 +16,7 @@ const AnimeList = ({ api }) => {
                                 <div className="px-3 py-2">
                                     <h3 className="font-bold mb-1 custom-card">{anime.title}</h3>
                                 </div>
-                                {anime.year ?
+                                {anime.score ?
                                     <div className="px-3 pb-2 flex flex-wrap justify-between items-center">
                                         <span className="bg-gray-200 rounded-md px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{anime.year}</span>
                                         <div className="flex gap-1 items-center text-sm font-semibold text-gray-700 mb-2">
