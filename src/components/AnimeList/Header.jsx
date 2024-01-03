@@ -4,11 +4,11 @@ const Header = ({ title, link }) => {
     return (
 
         <div className="flex justify-between items-center p-4">
-            <h1 className="text-2xl font-bold text-color-primary">{title}</h1>
+            <h1 className="text-2xl font-bold text-slate-600">{title}</h1>
             {
                 title && link
                     ?
-                    <Link href={link} className="md:text-xl text-sm underline hover:text-color-accent text-color-primary transition-all">
+                    <Link href={link} className="md:text-xl text-sm underline hover:text-color-accent text-slate-600 transition-all">
                         {title}
                     </Link>
                     :

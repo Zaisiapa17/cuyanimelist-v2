@@ -3,8 +3,6 @@ import Header from "@/components/AnimeList/Header"
 import { getAnimeResponse } from "@/libs/api-libs"
 
 const Home = async ({ params }) => {
-    console.log(params.keyword)
-
     const {keyword} = params
     const decodedKeyword = decodeURI(keyword)
 

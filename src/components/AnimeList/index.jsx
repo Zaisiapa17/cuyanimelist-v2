@@ -9,7 +9,7 @@ const AnimeList = ({ api }) => {
                 api.data?.map((anime, index) => {
                     return (
                         <Link href={`/${anime.mal_id}`} key={index}>
-                            <div className="w-40 sm:w-52  sm:h-96 rounded overflow-hidden shadow-md bg-white mt-2 hover:text-amber-600 hover:scale-105 transition-all">
+                            <div className="w-40 sm:w-52  sm:h-96 rounded overflow-hidden shadow-md bg-white mt-2 hover:text-color-accent hover:scale-105 transition-all">
                                 <div className='w-full h-52 sm:h-72 overflow-hidden'>
                                     <Image className="w-full h-52 sm:h-full object-cover transition-all" src={anime.images.webp.image_url} width={200} height={200} alt="Sunset in the mountains" />
                                 </div>

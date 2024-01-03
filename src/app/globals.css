@@ -24,3 +24,18 @@
     -webkit-line-clamp: 1 !important;
     -webkit-box-orient: vertical !important;
 }
+
+.loading {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #ffc639 95%, #0000) 50% 1px/24px 24px no-repeat,
+        radial-gradient(farthest-side, #0000 calc(100% - 28px), #5c5c5c 0);
+    animation: s9 1s infinite linear;
+}
+
+@keyframes s9 {
+    to {
+        transform: rotate(1turn);
+    }
+}

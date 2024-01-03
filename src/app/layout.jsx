@@ -1,10 +1,11 @@
-import { Inter } from 'next/font/google'
+import { Gabarito, Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/utilities/Navbar'
 import InputSearch from '@/utilities/Navbar/InputSearch'
 import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
+const gabrarito = Gabarito({ subsets: ['latin'] })
 
 export const metadata = {
     title: 'Create Next App',
@@ -14,10 +15,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <div className="bg-indigo-700 p-6 w-full">
+            <body className={gabrarito.className}>
+                <div className="bg-color-accent p-3 w-full">
                     <div className="flex md:flex-row flex-col justify-between md:items-center gap-2">
-                    <Link href="/" className="font-bold text-2xl">CUYANIMELIST</Link>
+                    <Link href="/" className="font-bold text-2xl text-slate-700">CUYANIMELIST</Link>
                         <InputSearch />
                     </div>
                 </div>
