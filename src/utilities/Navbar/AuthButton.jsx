@@ -11,13 +11,13 @@ const AuthButton = async () => {
         <div className="flex flex-row gap-3 justify-between items-center">
             {
                 user? (
-                    <Link href="/users/dashboard">
+                    <Link href="/users/dashboard" className="hover:text-color-primary">
                         Dashboard
                     </Link>
                 ) :
                 null
             }
-            <Link rel="stylesheet" href={actionUrl} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <Link rel="stylesheet" href={actionUrl} className="bg-color-secondary text-white font-bold py-2 px-4 rounded">
             {actionLabel}
             </Link>
         </div>
