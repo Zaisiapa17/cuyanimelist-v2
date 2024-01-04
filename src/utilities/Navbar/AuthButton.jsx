@@ -17,7 +17,9 @@ const AuthButton = async () => {
                 ) :
                 null
             }
-            <Link rel="stylesheet" className="bg-slate-800 p-3 border-2 rounded-md" href={actionUrl}>{actionLabel}</Link>
+            <Link rel="stylesheet" href={actionUrl} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            {actionLabel}
+            </Link>
         </div>
     )
 }
