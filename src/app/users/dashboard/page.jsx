@@ -7,6 +7,9 @@ import Header from "@/components/AnimeList/Header"
 const Page = async () => {
 
     const user = await authUserSession()
+    const collection = await prisma.collection.findMany({
+        where: { user_email: user.email },
+    });
 
     return (
         <div className="flex sm:flex-row flex-col p-5 gap-5 items-center sm:items-start">
@@ -20,15 +23,14 @@ const Page = async () => {
                 </div>
             </div>
             <div className="flex flex-col justify-start w-full">
-                <Header title={"My collection"} link={"/users/dashboard/collections"}/>
+                <Header title={"My collection"} link={"/users/dashboard/collections"} />
                 <div className="flex flex-wrap gap-3 justify-center mb-3">
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
-                    <Card/>
+                    {collection.slice(0, 7).map((collect, index) => {
+                        return (
+                            <Card idAnime={collect.anime_mal_id} image={collect.anime_image} title={collect.anime_title} key={index} />
+                        );
+                    })}
+
                 </div>
             </div>
 

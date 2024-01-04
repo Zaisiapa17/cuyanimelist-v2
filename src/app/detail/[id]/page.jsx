@@ -1,10 +1,18 @@
+import CollectionButton from "@/components/AnimeList/CollectionButton"
 import { getAnimeResponse } from "@/libs/api-libs"
+import { authUserSession } from "@/libs/auth-libs"
+import prisma from "@/libs/prisma"
 import VideoPlayer from "@/utilities/VideoPlayer"
 import { Calendar, Star } from "@phosphor-icons/react/dist/ssr"
 import Image from "next/image"
 
 const Home = async ({ params: { id } }) => {
     const anime = await getAnimeResponse(`anime/${id}`)
+    const user = await authUserSession()
+
+    const collection = await prisma.collection.findFirst({
+        where: { user_email: user?.email, anime_mal_id: id }
+    })
 
     return (
         <div className="pt-4 px-4 flex sm:flex-row gap-5 justify-center flex-col">
@@ -21,6 +29,11 @@ const Home = async ({ params: { id } }) => {
                             {anime.data.score}
                         </p>
                     </div>
+                    <div className="w-full flex justify-end">
+                        {
+                            !collection && user && <CollectionButton anime_mal_id={id} user_email={user?.email} anime_image={anime.data.images.webp.image_url} anime_title={anime.data.title} />
+                        }
+                    </div>
                 </div>
                 <div className="flex flex-wrap gap-1 justify-center sm:justify-start mt-3">
                     {anime.data.genres.map((genre, index) => {
@@ -32,36 +45,36 @@ const Home = async ({ params: { id } }) => {
                 <h2 className="text-2xl font-semibold text-slate-700">Sinopsis:</h2>
                 <p className="text-slate-600">{anime.data.synopsis}</p>
                 <div className="w-full flex items-center justify-center flex-col sm:items-center sm:justify-around sm:flex-row mt-3">
-                    <table className="table-fixed sm:w-1/3 w-full">
-                        <thead>
-                            <tr className="font-semibold">
+                    <div className="table-fixed sm:w-1/3 w-full">
+                        <div>
+                            <div className="font-semibold">
                                 detail:
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>type</td>
-                                <td className="border-2 border-white border-l-color-accent pl-3"> {anime.data.type}</td>
-                            </tr>
-                            <tr>
-                                <td>Status</td>
-                                <td className="border-2 border-white border-l-color-accent pl-3"> {anime.data.status}</td>
-                            </tr>
-                            <tr>
-                                <td>Rank</td>
-                                <td className="border-2 border-white border-l-color-accent pl-3"> {anime.data.rank}</td>
-                            </tr>
-                            <tr>
-                                <td>Anggota</td>
-                                <td className="border-2 border-white border-l-color-accent pl-3"> {anime.data.members}</td>
-                            </tr>
-                            <tr>
-                                <td>Episode</td>
-                                <td className="border-2 border-white border-l-color-accent pl-3"> {anime.data.episodes}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                <VideoPlayer youtubeId={anime.data.trailer.youtube_id} />
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <div>type</div>
+                                <div className="border-2 border-white border-l-color-accent pl-3"> {anime.data.type}</div>
+                            </div>
+                            <div>
+                                <div>Status</div>
+                                <div className="border-2 border-white border-l-color-accent pl-3"> {anime.data.status}</div>
+                            </div>
+                            <div>
+                                <div>Rank</div>
+                                <div className="border-2 border-white border-l-color-accent pl-3"> {anime.data.rank}</div>
+                            </div>
+                            <div>
+                                <div>Anggota</div>
+                                <div className="border-2 border-white border-l-color-accent pl-3"> {anime.data.members}</div>
+                            </div>
+                            <div>
+                                <div>Episode</div>
+                                <div className="border-2 border-white border-l-color-accent pl-3"> {anime.data.episodes}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <VideoPlayer youtubeId={anime.data.trailer.youtube_id} />
                 </div>
                 <div className="flex flex-row items-center mt-2 gap-1">
                     <Calendar size={32} color="#5c5c5c" />
