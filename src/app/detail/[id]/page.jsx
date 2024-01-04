@@ -1,4 +1,7 @@
 import CollectionButton from "@/components/AnimeList/CollectionButton"
+import CommentBox from "@/components/AnimeList/CommentBox"
+import CommentInput from "@/components/AnimeList/CommentInput"
+import HandleBack from "@/components/HandleBack"
 import { getAnimeResponse } from "@/libs/api-libs"
 import { authUserSession } from "@/libs/auth-libs"
 import prisma from "@/libs/prisma"
@@ -15,11 +18,14 @@ const Home = async ({ params: { id } }) => {
     })
 
     return (
+        <>
+            <HandleBack/>
         <div className="pt-4 px-4 flex sm:flex-row gap-5 justify-center flex-col">
+
             <Image src={anime.data.images.jpg.large_image_url} width={350} height={350} className="mx-auto sm:mx-0" />
 
             <div className="flex flex-col">
-                <div className="flex flex-row items-center gap-2 justify-center sm:justify-start">
+                <div className="flex sm:flex-row flex-col items-center gap-2 justify-center sm:justify-start">
                     <h1 className="text-3xl font-semibold text-slate-800">{anime.data.title}</h1>
                     <div className="flex gap-1 items-center text-gray-700">
                         <div className='text-amber-400'>
@@ -29,7 +35,7 @@ const Home = async ({ params: { id } }) => {
                             {anime.data.score}
                         </p>
                     </div>
-                    <div className="w-full flex justify-end">
+                    <div className="w-1/3 flex justify-end">
                         {
                             !collection && user && <CollectionButton anime_mal_id={id} user_email={user?.email} anime_image={anime.data.images.webp.image_url} anime_title={anime.data.title} />
                         }
@@ -45,7 +51,7 @@ const Home = async ({ params: { id } }) => {
                 <h2 className="text-2xl font-semibold text-slate-700">Sinopsis:</h2>
                 <p className="text-slate-600">{anime.data.synopsis}</p>
                 <div className="w-full flex items-center justify-center flex-col sm:items-center sm:justify-around sm:flex-row mt-3">
-                    <div className="table-fixed sm:w-1/3 w-full">
+                    <div className="w-full">
                         <div>
                             <div className="font-semibold">
                                 detail:
@@ -82,6 +88,12 @@ const Home = async ({ params: { id } }) => {
                 </div>
             </div>
         </div>
+        <CommentBox anime_mal_id={id}/>
+        {
+            user && <CommentInput anime_mal_id={id} user_email={user?.email} username={user?.name} anime_title={anime.data.title}/>
+        }
+        </>
+
     )
 }
 
